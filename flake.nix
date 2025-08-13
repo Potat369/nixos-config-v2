@@ -6,6 +6,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
   outputs =
     inputs@{
@@ -24,6 +25,7 @@
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         system = system;
         modules = [
+          inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/laptop
           inputs.home-manager.nixosModules.home-manager
           {

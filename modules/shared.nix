@@ -15,4 +15,10 @@
   };
   system.stateVersion = "24.11";
   networking.networkmanager.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 }

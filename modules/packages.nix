@@ -10,26 +10,43 @@ in
 {
   environment.systemPackages = with pkgs; [
     wezterm
+    figma-linux
+    discord
+    prismlauncher
     git
+    gh
     microsoft-edge
     rofi
+    hypridle
+
+    # Language Tools
+    nixd
+    nixfmt-rfc-style
   ];
 
   programs = {
+    noisetorch.enable = true;
+    direnv = {
+      enable = true;
+      enableFishIntegration = true;
+      silent = true;
+    };
     fish = {
-            enable = true;     interactiveShellInit = ''
-      if not uwsm check is-active; and uwsm check may-start
-          exec uwsm start hyprland-uwsm.desktop
-      end
+      enable = true;
+      interactiveShellInit = ''
+        if not uwsm check is-active; and uwsm check may-start
+            exec uwsm start hyprland-uwsm.desktop
+        end
 
-      set -U fish_greeting
-      set -g fish_color_autosuggestion "#625e5a"
-    '';
-    promptInit = ''
-      function fish_prompt
-        printf '%s%s%s> ' (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-      end
-    '';};
+        set -U fish_greeting
+        set -g fish_color_autosuggestion "#625e5a"
+      '';
+      promptInit = ''
+        function fish_prompt
+          printf '%s%s%s> ' (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
+        end
+      '';
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -40,6 +57,7 @@ in
       enable = true;
       patchedMinecraftEntry = true;
     };
+    java.enable = true;
     rider = {
       enable = true;
       patchedTMLEntry = true;
@@ -48,5 +66,15 @@ in
       enable = true;
       withUWSM = true;
     };
+  };
+
+  services.flatpak = {
+    enable = true;
+    packages = [
+      {
+        appId = "org.vinegarhq.Sober";
+        origin = "flathub";
+      }
+    ];
   };
 }
