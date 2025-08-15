@@ -1,8 +1,8 @@
 { ... }:
 {
   imports = [
-    ./programs
     ./shared.nix
+    ./programs
     ./user.nix
     ./packages.nix
   ];

@@ -34,10 +34,23 @@
   programs.wezterm = {
     enable = true;
     extraConfig = ''
+      wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+          local process_name = tab.active_pane.foreground_process_name or ""
+          process_name = process_name:match("([^/\\]+)$") or process_name
+
+          local index = tostring(tab.tab_index + 1)
+
+          local title = process_name == "" and (index) or (index .. ": " .. process_name)
+          return {
+              { Text = " " .. title .. " " },
+          }
+      end)
+
       return {
           font_size = 13,
           font = wezterm.font("DejaVu Sans Mono"),
           force_reverse_video_cursor = true,
+          use_fancy_tab_bar = false,
           window_padding = {
             left = 0,
             right = 0,

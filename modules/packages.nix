@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  unstable,
   ...
 }:
 let
@@ -9,8 +10,9 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    btop
     wezterm
-    figma-linux
+    ripgrep
     discord
     prismlauncher
     git
@@ -25,6 +27,7 @@ in
   ];
 
   programs = {
+    steam.enable = true;
     noisetorch.enable = true;
     direnv = {
       enable = true;
@@ -56,11 +59,13 @@ in
     idea = {
       enable = true;
       patchedMinecraftEntry = true;
+      package = unstable.jetbrains.idea-ultimate;
     };
     java.enable = true;
     rider = {
       enable = true;
       patchedTMLEntry = true;
+      package = unstable.jetbrains.rider;
     };
     hyprland = {
       enable = true;

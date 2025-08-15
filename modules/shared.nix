@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
@@ -20,5 +25,18 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+  time.timeZone = "Europe/Helsinki";
+  programs.dconf.profiles.potat369 = {
+    databases = [
+      {
+        lockAll = true;
+        settings = {
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+          };
+        };
+      }
+    ];
   };
 }

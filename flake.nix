@@ -18,12 +18,14 @@
     let
       system = "x86_64-linux";
       unstable = import nixpkgs-unstable {
-        inherit system;
+        system = system;
+        config.allowUnfree = true;
       };
     in
     {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         system = system;
+        specialArgs = { inherit unstable inputs; };
         modules = [
           inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/laptop
