@@ -3,6 +3,7 @@
   config,
   lib,
   unstable,
+  unstable-small,
   ...
 }:
 let
@@ -12,6 +13,7 @@ in
   environment.systemPackages = with pkgs; [
     btop
     wezterm
+    dotnet-sdk
     ripgrep
     discord
     prismlauncher
@@ -24,6 +26,8 @@ in
     # Language Tools
     nixd
     nixfmt-rfc-style
+    lua-language-server
+    stylua
   ];
 
   programs = {
@@ -65,7 +69,7 @@ in
     rider = {
       enable = true;
       patchedTMLEntry = true;
-      package = unstable.jetbrains.rider;
+      package = unstable-small.jetbrains.rider;
     };
     hyprland = {
       enable = true;
@@ -75,6 +79,10 @@ in
 
   services.flatpak = {
     enable = true;
+    update.auto = {
+      enable = true;
+      onCalendar = "weekly";
+    };
     packages = [
       {
         appId = "org.vinegarhq.Sober";

@@ -14,6 +14,12 @@
     auto-optimise-store = true;
   };
 
+  boot.loader = {
+    systemd-boot.enable = true;
+    timeout = 5;
+    efi.canTouchEfiVariables = true;
+  };
+
   documentation = {
     nixos.enable = false;
     man.generateCaches = false;

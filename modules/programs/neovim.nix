@@ -30,7 +30,7 @@ in
           if [ ! -d ${configDir} ]; then
              echo "Pulling Neovim config..."
              ${pkgs.git}/bin/git clone ${cfg.repo} ${configDir}
-             chown ${cfg.user.name}:users ${configDir}
+             chown -R ${cfg.user.name}:users ${configDir}
           else
               echo "Neovim config found..."
           fi

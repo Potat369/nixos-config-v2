@@ -2,7 +2,7 @@
 {
   services.thermald.enable = true;
   services.auto-cpufreq = {
-    enable = true;
+    enable = false;
     settings = {
       battery = {
         governor = "powersave";
@@ -11,6 +11,7 @@
       charger = {
         governor = "performance";
         turbo = "auto";
+        scaling_max_freq = 3500000;
       };
     };
   };
