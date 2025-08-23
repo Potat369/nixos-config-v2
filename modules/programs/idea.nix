@@ -6,26 +6,28 @@
 }:
 let
   cfg = config.programs.idea;
-  shell = pkgs.writeText "minecraft.dev.nix" ''
-    {
-      pkgs ? import <nixpkgs> { },
-    }:
+  shell =
+    pkgs.writeText "minecraft.dev.nix" # nix
+      ''
+        {
+          pkgs ? import <nixpkgs> { },
+        }:
 
-    let
-      deps = with pkgs; [
-        libGL
-        glfw-wayland-minecraft
-        libpulseaudio
-        openal
-        udev
-        flite
-      ];
-    in
-    pkgs.mkShell {
-      buildInputs = deps;
-      LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath deps;
-    }
-  '';
+        let
+          deps = with pkgs; [
+            libGL
+            glfw-wayland-minecraft
+            libpulseaudio
+            openal
+            udev
+            flite
+          ];
+        in
+        pkgs.mkShell {
+          buildInputs = deps;
+          LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath deps;
+        }
+      '';
 in
 {
   options.programs.idea = {
