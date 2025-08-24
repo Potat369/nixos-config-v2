@@ -22,6 +22,9 @@ in
     microsoft-edge
     rofi
     hypridle
+    aseprite
+    brightnessctl
+    anytype
 
     # Language Tools
     nixd

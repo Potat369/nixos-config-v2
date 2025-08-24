@@ -41,6 +41,10 @@
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
           };
+          "org/gtk/settings/file-chooser" = {
+            sort-directories-first = "true";
+            startup-mode = "cwd";
+          };
         };
       }
     ];
