@@ -108,6 +108,31 @@
     };
   };
 
+  services.hyprsunset = {
+    enable = true;
+    transitions = {
+      sunrise = {
+        calendar = "*-*-* 06:00:00";
+        requests = [
+          [
+            "temperature"
+            "6500"
+          ]
+          [ "gamma 100" ]
+        ];
+      };
+      sunset = {
+        calendar = "*-*-* 19:00:00";
+        requests = [
+          [
+            "temperature"
+            "3500"
+          ]
+        ];
+      };
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = # hyprlang
@@ -191,8 +216,8 @@
         bind = $mainMod, R, exec, $menu
         bind = $mainMod, P, pseudo,
         bind = $mainMod, J, togglesplit,
-        bind = $mainMod, SLASH, exec, nix run nixpkgs##hyprshot -- -m output
-        bind = $mainMod, SEMICOLON, exec, nix run nixpkgs##hyprshot -- -m region
+        bind = $mainMod, SLASH, exec, hyprshot -z -m output
+        bind = $mainMod, SEMICOLON, exec, hyprshot -z -m region
 
         binde = $mainMod_SHIFT, right, resizeactive, 40 0
         binde = $mainMod_SHIFT, left, resizeactive, -40 0

@@ -24,7 +24,8 @@ in
     hypridle
     aseprite
     brightnessctl
-    anytype
+    hyprshot
+    hyprsunset
 
     # Language Tools
     nixd
