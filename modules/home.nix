@@ -15,6 +15,8 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
+    theme = "Arc-Dark";
+    plugins = with pkgs; [ rofi-calc ];
     extraConfig = {
       show-icons = true;
     };
@@ -126,7 +128,7 @@
         requests = [
           [
             "temperature"
-            "3500"
+            "4500"
           ]
         ];
       };
@@ -138,7 +140,7 @@
     extraConfig = # hyprlang
       ''
         monitor=eDP-1,1920x1080@144,0x0,1
-        monitor=HDMI-A-2,2560x1440@60,0x0,1
+        monitor=HDMI-A-2,2560x1440@144,0x0,1
         monitor=,preferred,0x0,auto
 
         $terminal = uwsm app -- wezterm
@@ -147,6 +149,9 @@
 
         env = XCURSOR_SIZE,16
         env = HYPRCURSOR_SIZE,16
+        env = HYPRSHOT_DIR,$HOME/Pictures
+
+        exec-once = dunst
 
         general {
             gaps_in = 2
@@ -180,7 +185,8 @@
         misc {
             disable_hyprland_logo = true
             vfr = true
-            background_color = 0x12120f
+            enable_anr_dialog = false
+            background_color = 0x000
         }
 
         xwayland:force_zero_scaling = true
@@ -214,10 +220,11 @@
         bind = $mainMod, B, exec, $browser
         bind = $mainMod, V, togglefloating,
         bind = $mainMod, R, exec, $menu
+        bind = $mainMod, E, exec, rofi -show calc -modi calc -no-show-match -no-sort
         bind = $mainMod, P, pseudo,
         bind = $mainMod, J, togglesplit,
         bind = $mainMod, SLASH, exec, hyprshot -z -m output
-        bind = $mainMod, SEMICOLON, exec, hyprshot -z -m region
+        bind = $mainMod, PERIOD, exec, hyprshot -z -m region
 
         binde = $mainMod_SHIFT, right, resizeactive, 40 0
         binde = $mainMod_SHIFT, left, resizeactive, -40 0
@@ -284,6 +291,9 @@
 
         windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
         windowrulev2 = tile,class:Aseprite
+
+        windowrulev2 = workspace 2, class:^Unity$
+        windowrulev2 = noinitialfocus, class:^Unity$
       '';
   };
 }

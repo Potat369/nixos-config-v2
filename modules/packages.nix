@@ -11,27 +11,34 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    btop
     wezterm
-    dotnet-sdk
-    ripgrep
     discord
     prismlauncher
-    git
-    gh
     microsoft-edge
-    rofi
-    hypridle
     aseprite
-    brightnessctl
+    unityhub
+    telegram-desktop
+    dunst
+
+    # Hyprland
+    hypridle
     hyprshot
-    hyprsunset
+
+    # Terminal Tools
+    unzip
+    brightnessctl
+    btop
+    git
+    ripgrep
+    gh
+    fzf
 
     # Language Tools
     nixd
     nixfmt-rfc-style
     lua-language-server
     stylua
+    dotnet-sdk
   ];
 
   programs = {
@@ -81,17 +88,19 @@ in
     };
   };
 
-  services.flatpak = {
-    enable = true;
-    update.auto = {
+  services = {
+    flatpak = {
       enable = true;
-      onCalendar = "weekly";
+      update.auto = {
+        enable = true;
+        onCalendar = "weekly";
+      };
+      packages = [
+        {
+          appId = "org.vinegarhq.Sober";
+          origin = "flathub";
+        }
+      ];
     };
-    packages = [
-      {
-        appId = "org.vinegarhq.Sober";
-        origin = "flathub";
-      }
-    ];
   };
 }
