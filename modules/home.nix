@@ -135,13 +135,43 @@
     };
   };
 
+  services.kanshi = {
+    enable = true;
+    systemdTarget = "hyprland-session.target";
+
+    profiles = {
+      undocked = {
+        outputs = [
+          {
+            criteria = "eDP-1";
+            scale = 1.0;
+            status = "enable";
+          }
+        ];
+      };
+
+      docked = {
+        outputs = [
+          {
+            criteria = "AOC Q27G3XMN 1APR5JA000539";
+            mode = "2560x1440@60Hz";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      };
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = # hyprlang
       ''
-        monitor=eDP-1,1920x1080@144,0x0,1
-        monitor=HDMI-A-2,2560x1440@144,0x0,1
-        monitor=,preferred,0x0,auto
+        # monitor=eDP-1,1920x1080@144,0x0,1
+        # monitor=HDMI-A-2,2560x1440@144,0x0,1
+        # monitor=,preferred,0x0,auto
 
         $terminal = uwsm app -- wezterm
         $menu = rofi -show drun -run-command "uwsm app -- {cmd}"
@@ -280,8 +310,8 @@
         bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 10%+
         bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 10%-
 
-        bindl=,switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
-        bindl=,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 1920x1080@144, 0x0, 1"
+        # bindl=,switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
+        # bindl=,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 1920x1080@144, 0x0, 1"
 
         bindl = , XF86AudioNext, exec, playerctl next
         bindl = , XF86AudioPause, exec, playerctl play-pause

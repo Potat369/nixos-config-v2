@@ -19,6 +19,7 @@ in
     unityhub
     telegram-desktop
     dunst
+    wl-clipboard
 
     # Hyprland
     hypridle
@@ -42,6 +43,7 @@ in
   ];
 
   programs = {
+    droidcam.enable = true;
     steam.enable = true;
     noisetorch.enable = true;
     direnv = {
