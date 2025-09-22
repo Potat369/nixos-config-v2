@@ -221,6 +221,7 @@
         bind = $mainMod, V, togglefloating,
         bind = $mainMod, R, exec, $menu
         bind = $mainMod, E, exec, rofi -show calc -modi calc -no-show-match -no-sort
+        bind = $mainMod, G, exec, rofi -show drun -run-command "uwsm app -- nvidia-offload {cmd}"
         bind = $mainMod, P, pseudo,
         bind = $mainMod, J, togglesplit,
         bind = $mainMod, SLASH, exec, hyprshot -z -m output
