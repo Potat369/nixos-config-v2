@@ -137,7 +137,7 @@
 
   services.kanshi = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    # systemdTarget = "hyprland-session.target";
 
     profiles = {
       undocked = {
@@ -146,6 +146,7 @@
             criteria = "eDP-1";
             scale = 1.0;
             status = "enable";
+            mode = "1920x1080@144";
           }
         ];
       };

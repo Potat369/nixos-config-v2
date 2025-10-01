@@ -14,6 +14,10 @@
     auto-optimise-store = true;
   };
 
+  networking.hosts = {
+    "10.0.0.1" = [ "chatgpt.com" ];
+  };
+
   boot.loader = {
     systemd-boot.enable = true;
     timeout = 5;

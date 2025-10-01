@@ -35,7 +35,7 @@ in
     fzf
 
     # Language Tools
-    nixd
+    nil
     nixfmt-rfc-style
     lua-language-server
     stylua
