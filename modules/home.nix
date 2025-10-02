@@ -234,9 +234,15 @@
             sensitivity = -0.5
 
             touchpad {
-                natural_scroll = false
+                natural_scroll = true
             }
         }
+          
+        device {
+            name = ust0001:00-06cb:7e7e-touchpad
+            sensitivity = 1
+        }
+
         debug:full_cm_proto=true
         gestures {
             workspace_swipe = false

@@ -20,6 +20,7 @@ in
     telegram-desktop
     dunst
     wl-clipboard
+    zulu17
 
     # Hyprland
     hypridle
