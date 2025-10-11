@@ -14,13 +14,11 @@ in
     wezterm
     discord
     prismlauncher
+    libreoffice-qt6-fresh
     microsoft-edge
     aseprite
-    unityhub
-    telegram-desktop
     dunst
     wl-clipboard
-    zulu17
 
     # Hyprland
     hypridle
@@ -54,19 +52,21 @@ in
     };
     fish = {
       enable = true;
-      interactiveShellInit = ''
-        if not uwsm check is-active; and uwsm check may-start
-            exec uwsm start hyprland-uwsm.desktop
-        end
+      interactiveShellInit = # fish
+        ''
+          if not uwsm check is-active; and uwsm check may-start
+              exec uwsm start hyprland-uwsm.desktop
+          end
 
-        set -U fish_greeting
-        set -g fish_color_autosuggestion "#625e5a"
-      '';
-      promptInit = ''
-        function fish_prompt
-          printf '%s%s%s> ' (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-        end
-      '';
+          set -U fish_greeting
+          set -g fish_color_autosuggestion "#625e5a"
+        '';
+      promptInit = # fish
+        ''
+          function fish_prompt
+            printf '%s%s%s> ' (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
+          end
+        '';
     };
     neovim = {
       enable = true;

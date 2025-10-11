@@ -163,6 +163,19 @@
           }
         ];
       };
+
+      school = {
+        outputs = [
+          {
+            criteria = "HP Inc. HP P24q G4 CNC2111B7G";
+            mode = "2560x1440@60Hz";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      };
     };
   };
 
