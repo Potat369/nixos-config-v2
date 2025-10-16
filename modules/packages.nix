@@ -15,6 +15,7 @@ in
     discord
     prismlauncher
     libreoffice-qt6-fresh
+    android-studio
     microsoft-edge
     aseprite
     dunst
@@ -60,6 +61,10 @@ in
 
           set -U fish_greeting
           set -g fish_color_autosuggestion "#625e5a"
+
+          function ls --wraps=ls
+            LC_COLLATE=C command ls -AF --group-directories-first --color=never -w 80 $argv
+          end
         '';
       promptInit = # fish
         ''
