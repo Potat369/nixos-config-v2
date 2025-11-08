@@ -20,6 +20,8 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  hardware.bluetooth.enable = true;
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/24f42d0d-e5f4-407f-867f-ea0e38b2af9f";
     fsType = "ext4";

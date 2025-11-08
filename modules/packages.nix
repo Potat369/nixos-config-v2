@@ -4,6 +4,7 @@
   lib,
   unstable,
   unstable-small,
+  inputs,
   ...
 }:
 let
@@ -11,6 +12,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    arduino
     wezterm
     discord
     prismlauncher
@@ -20,6 +22,18 @@ in
     aseprite
     dunst
     wl-clipboard
+    (pkgs.symlinkJoin {
+      name = "vscode";
+      buildInputs = with pkgs; [
+        makeWrapper
+        fna3d
+      ];
+      paths = [ pkgs.vscode ];
+      postBuild = ''
+        wrapProgram $out/bin/code \
+          --set LD_LIBRARY_PATH ${pkgs.lib.makeLibraryPath [ pkgs.fna3d ]}
+      '';
+    })
 
     # Hyprland
     hypridle
@@ -28,7 +42,9 @@ in
     # Terminal Tools
     unzip
     brightnessctl
+    ddcutil
     btop
+    bluetuith
     git
     ripgrep
     gh
@@ -39,10 +55,23 @@ in
     nixfmt-rfc-style
     lua-language-server
     stylua
-    dotnet-sdk
+    (
+      with dotnetCorePackages;
+      combinePackages [
+        dotnet_9.sdk
+        dotnet_8.sdk
+      ]
+    )
   ];
 
   programs = {
+    obs-studio = {
+      enable = true;
+      package = pkgs.obs-studio.override {
+        cudaSupport = true;
+      };
+      plugins = with pkgs.obs-studio-plugins; [ wlrobs ];
+    };
     droidcam.enable = true;
     steam.enable = true;
     noisetorch.enable = true;
@@ -86,7 +115,7 @@ in
     };
     java.enable = true;
     rider = {
-      enable = true;
+      enable = false;
       patchedTMLEntry = true;
       package = unstable-small.jetbrains.rider;
     };

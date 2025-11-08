@@ -15,7 +15,10 @@
   };
 
   networking.hosts = {
-    "10.0.0.1" = [ "chatgpt.com" ];
+    "10.0.0.1" = [
+      "chatgpt.com"
+      "gemini.google.com"
+    ];
   };
 
   boot.loader = {
@@ -37,8 +40,9 @@
     pulse.enable = true;
   };
   time.timeZone = "Europe/Helsinki";
-  programs.dconf.profiles.potat369 = {
-    databases = [
+  programs.dconf = {
+    enable = true;
+    profiles.potat369.databases = [
       {
         lockAll = true;
         settings = {
@@ -48,9 +52,13 @@
           "org/gtk/settings/file-chooser" = {
             sort-directories-first = "true";
             startup-mode = "cwd";
+            sort-column = "name";
+            show-hidden = "false";
+            sort-order = "ascending";
           };
         };
       }
     ];
   };
+  hardware.i2c.enable = true;
 }

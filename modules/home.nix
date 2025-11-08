@@ -342,9 +342,12 @@
 
         windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
         windowrulev2 = tile,class:Aseprite
+        windowrulev2 = tile,class:Minecraft.*
 
         windowrulev2 = workspace 2, class:^Unity$
         windowrulev2 = noinitialfocus, class:^Unity$
+
+        bind = SUPER, Z, pass, class:^(com\.obsproject\.Studio)$
       '';
   };
 }
