@@ -47,7 +47,6 @@ in
     bluetuith
     git
     ripgrep
-    gh
     fzf
 
     # Language Tools
