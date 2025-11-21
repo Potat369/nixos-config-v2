@@ -33,6 +33,7 @@ in
     btop
     bluetuith
     git
+    gh
     ripgrep
 
     # Language Tools
