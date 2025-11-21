@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
   };
   outputs =
     inputs@{
@@ -31,10 +32,18 @@
     {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         system = system;
-        specialArgs = { inherit unstable unstable-small inputs; };
+        specialArgs = {
+          inherit
+            unstable
+            unstable-small
+            inputs
+            system
+            ;
+        };
         modules = [
-          inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/laptop
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.hyprdynamicmonitors.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

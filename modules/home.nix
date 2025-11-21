@@ -181,6 +181,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = [ "--all" ];
     extraConfig = # hyprlang
       ''
         # monitor=eDP-1,1920x1080@144,0x0,1

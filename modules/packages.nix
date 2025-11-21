@@ -5,6 +5,7 @@
   unstable,
   unstable-small,
   inputs,
+  system,
   ...
 }:
 let
@@ -12,28 +13,14 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    arduino
     wezterm
     discord
     prismlauncher
     libreoffice-qt6-fresh
-    android-studio
     microsoft-edge
     aseprite
     dunst
     wl-clipboard
-    (pkgs.symlinkJoin {
-      name = "vscode";
-      buildInputs = with pkgs; [
-        makeWrapper
-        fna3d
-      ];
-      paths = [ pkgs.vscode ];
-      postBuild = ''
-        wrapProgram $out/bin/code \
-          --set LD_LIBRARY_PATH ${pkgs.lib.makeLibraryPath [ pkgs.fna3d ]}
-      '';
-    })
 
     # Hyprland
     hypridle
@@ -47,7 +34,6 @@ in
     bluetuith
     git
     ripgrep
-    fzf
 
     # Language Tools
     nil
@@ -61,6 +47,7 @@ in
         dotnet_8.sdk
       ]
     )
+    inputs.hyprdynamicmonitors.packages.${system}.default
   ];
 
   programs = {
@@ -114,7 +101,7 @@ in
     };
     java.enable = true;
     rider = {
-      enable = false;
+      enable = true;
       patchedTMLEntry = true;
       package = unstable-small.jetbrains.rider;
     };
@@ -138,5 +125,22 @@ in
         }
       ];
     };
+    hyprdynamicmonitors = {
+      enable = false;
+      mode = "user";
+      config = ''
+        [profiles.laptop_only]
+        config_file = "hyprconfigs/laptop.conf"
+        config_file_type = "static"
+
+        [[profiles.laptop_only.conditions.required_monitors]]
+        name = "eDP-1"
+      '';
+      extraFiles = {
+        "xdg/hyprdynamicmonitors/hyprconfigs" = ./hyprconfigs/laptop.conf;
+      };
+      extraFlags = [ "--debug" ];
+    };
+    upower.enable = true;
   };
 }
