@@ -30,6 +30,11 @@
       };
     in
     {
+      templates.shell = {
+        path = ./shell;
+        description = "Shell Template";
+      };
+
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         system = system;
         specialArgs = {
