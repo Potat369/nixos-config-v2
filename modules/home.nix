@@ -154,20 +154,7 @@
       docked = {
         outputs = [
           {
-            criteria = "AOC Q27G3XMN 1APR5JA000539";
-            mode = "2560x1440@60Hz";
-          }
-          {
-            criteria = "eDP-1";
-            status = "disable";
-          }
-        ];
-      };
-
-      school = {
-        outputs = [
-          {
-            criteria = "HP Inc. HP P24q G4 CNC2111B7G";
+            criteria = "HDMI-A-2";
             mode = "2560x1440@60Hz";
           }
           {
@@ -237,10 +224,10 @@
         xwayland:force_zero_scaling = true
 
         input {
-            kb_layout = us, ru
+            kb_layout = us, fi
             kb_variant =
             kb_model =
-            kb_options =
+            kb_options = 
             kb_rules =
 
             follow_mouse = 1
@@ -277,6 +264,8 @@
         bind = $mainMod, J, togglesplit,
         bind = $mainMod, SLASH, exec, hyprshot -z -m output
         bind = $mainMod, PERIOD, exec, hyprshot -z -m region
+
+        bind = $mainMod, T, exec, hyprctl switchxkblayout all next
 
         binde = $mainMod_SHIFT, right, resizeactive, 40 0
         binde = $mainMod_SHIFT, left, resizeactive, -40 0
@@ -323,6 +312,7 @@
 
         bindm = $mainMod, mouse:272, movewindow
         bindm = $mainMod, mouse:273, resizewindow
+
 
         bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
         bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-

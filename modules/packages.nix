@@ -21,6 +21,7 @@ in
     aseprite
     dunst
     wl-clipboard
+    obsidian
 
     # Hyprland
     hypridle
@@ -35,6 +36,7 @@ in
     git
     gh
     ripgrep
+    gcc
 
     # Language Tools
     nil
@@ -48,6 +50,7 @@ in
         dotnet_8.sdk
       ]
     )
+    inputs.treesitter.packages.${system}.cli
     inputs.hyprdynamicmonitors.packages.${system}.default
   ];
 
@@ -81,6 +84,10 @@ in
           function ls --wraps=ls
             LC_COLLATE=C command ls -AF --group-directories-first --color=never -w 80 $argv
           end
+
+          function npm --wraps=npm
+            pnpm $argv
+          end
         '';
       promptInit = # fish
         ''
@@ -98,7 +105,7 @@ in
     idea = {
       enable = true;
       patchedMinecraftEntry = true;
-      package = unstable.jetbrains.idea-ultimate;
+      package = unstable-small.jetbrains.idea-ultimate;
     };
     java.enable = true;
     rider = {

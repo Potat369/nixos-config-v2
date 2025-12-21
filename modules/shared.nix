@@ -17,6 +17,8 @@
   networking.hosts = {
     "10.0.0.1" = [
       "gemini.google.com"
+      "chat.deepseek.com"
+      "grok.com"
     ];
   };
 

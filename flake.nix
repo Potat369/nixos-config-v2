@@ -9,6 +9,7 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
+    treesitter.url = "github:tree-sitter/tree-sitter";
   };
   outputs =
     inputs@{
